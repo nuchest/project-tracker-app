@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Workspace</p>
+          <h1>Project Tracker</h1>
+        </div>
+        <button id="newProjectBtn" class="primary-btn">＋ New project</button>
+      </header>
+
+      <section id="summaryCards" class="summary-grid"></section>
+
+      <main class="layout">
+        <aside class="sidebar">
+          <section class="panel">
+            <div class="panel-header">
+              <h2>Projects</h2>
+            </div>
+            <div id="projectList" class="project-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <h2>Add task</h2>
+            </div>
+            <form id="taskForm" class="task-form">
+              <label>
+                <span>Project</span>
+                <select id="taskProjectSelect" name="projectId" required></select>
+              </label>
+
+              <label>
+                <span>Title</span>
+                <input name="title" type="text" maxlength="60" placeholder="Example: Design homepage" required />
+              </label>
+
+              <label>
+                <span>Description</span>
+                <textarea name="description" rows="3" maxlength="200" placeholder="Brief details..."></textarea>
+              </label>
+
+              <div class="two-col">
+                <label>
+                  <span>Priority</span>
+                  <select name="priority">
+                    <option value="Low">Low</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="High">High</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Assignee</span>
+                  <input name="assignee" type="text" maxlength="30" placeholder="Name" />
+                </label>
+              </div>
+
+              <label>
+                <span>Due date</span>
+                <input name="dueDate" type="date" />
+              </label>
+
+              <button type="submit" class="primary-btn full-width">Add task</button>
+            </form>
+          </section>
+        </aside>
+
+        <section class="content-panel">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Current project</p>
+              <h2 id="currentProjectName">All tasks</h2>
+            </div>
+            <div class="toolbar-actions">
+              <input id="searchInput" type="search" placeholder="Search task..." />
+              <select id="statusFilter">
+                <option value="all">All statuses</option>
+                <option value="todo">To Do</option>
+                <option value="inprogress">In Progress</option>
+                <option value="review">Review</option>
+                <option value="done">Done</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="board" class="board"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="projectModal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>New project</h3>
+          <button id="closeModalBtn" class="icon-btn" aria-label="Close">✕</button>
+        </div>
+
+        <form id="projectForm" class="project-form">
+          <label>
+            <span>Project name</span>
+            <input name="name" type="text" maxlength="40" placeholder="Example: Product launch" required />
+          </label>
+
+          <label>
+            <span>Owner</span>
+            <input name="owner" type="text" maxlength="30" placeholder="Team / person" />
+          </label>
+
+          <label>
+            <span>Accent color</span>
+            <input name="color" type="color" value="#6d5efc" />
+          </label>
+
+          <button type="submit" class="primary-btn full-width">Create project</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
